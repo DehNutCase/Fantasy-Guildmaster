@@ -10,8 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Game Template"
+config/name="20 Seconds Daughter"
+config/version="0.0.1"
 run/main_scene="res://scenes/opening/opening.tscn"
+config/custom_user_dir_name="SleepyCatSoftware/20SecondsDaughter"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.png"
 
@@ -24,8 +26,8 @@ ProjectUISoundController="*res://addons/maaacks_game_template/base/nodes/autoloa
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=360
 
 [editor_plugins]
 
@@ -33,6 +35,7 @@ enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
 
 [gui]
 
+theme/custom="res://resources/themes/grow.tres"
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]

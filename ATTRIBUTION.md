@@ -1,4 +1,7 @@
 # Attribution
+### 20 Seconds Daughter
+Author: [SleepyCatSoftware](https://sleepycatsoftware.itch.io/)
+
 ## Collaborators
 
 ### Godot Game Template
