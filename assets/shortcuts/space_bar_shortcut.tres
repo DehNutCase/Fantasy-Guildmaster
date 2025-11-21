@@ -1,0 +1,6 @@
+[gd_resource type="Shortcut" load_steps=2 format=3 uid="uid://40dje1lljl3i"]
+
+[ext_resource type="InputEventKey" uid="uid://yailfynfg8sv" path="res://assets/shortcuts/space_bar_input.tres" id="1_s0b5e"]
+
+[resource]
+events = [ExtResource("1_s0b5e")]

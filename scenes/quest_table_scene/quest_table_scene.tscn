@@ -1,0 +1,187 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvxaff43r1r76"]
+
+[ext_resource type="Script" uid="uid://0qshyr4uxws6" path="res://scenes/quest_table_scene/quest_table_scene.gd" id="1_m22np"]
+[ext_resource type="Shortcut" uid="uid://40dje1lljl3i" path="res://assets/shortcuts/space_bar_shortcut.tres" id="2_1fjsi"]
+[ext_resource type="PackedScene" uid="uid://dl8v7jvifmu1i" path="res://scenes/quest_card/quest_card.tscn" id="2_j88rj"]
+[ext_resource type="PackedScene" uid="uid://deqxoltweu4dr" path="res://scenes/adventurer_card/adventurer_card.tscn" id="2_t0odh"]
+
+[node name="QuestTableScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m22np")
+metadata/_edit_lock_ = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="PauseButton" type="Button" parent="UI/MarginContainer"]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+shortcut = ExtResource("2_1fjsi")
+text = "Pause (Spacebar)"
+metadata/_edit_lock_ = true
+
+[node name="AdventurersContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+alignment = 1
+
+[node name="AdventurerCard" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+layout_mode = 2
+adventurer_name = "Hero (F)"
+stats = {
+"Atk": 1200,
+"Def": 600,
+"Luk": 1200,
+"Mag": 1200,
+"Res": 600,
+"Spd": 600
+}
+
+[node name="AdventurerCard2" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+layout_mode = 2
+adventurer_name = "Hero (M)"
+stats = {
+"Atk": 750,
+"Def": 1100,
+"Luk": 800,
+"Mag": 750,
+"Res": 1100,
+"Spd": 800
+}
+
+[node name="AdventurerCard3" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+layout_mode = 2
+adventurer_name = "Adventurer (M)"
+stats = {
+"Atk": 450,
+"Def": 450,
+"Luk": 450,
+"Mag": 450,
+"Res": 450,
+"Spd": 450
+}
+
+[node name="AdventurerCard4" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+layout_mode = 2
+adventurer_name = "Adventurer (F)"
+stats = {
+"Atk": 450,
+"Def": 450,
+"Luk": 450,
+"Mag": 450,
+"Res": 450,
+"Spd": 450
+}
+
+[node name="AdventurerCard5" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+layout_mode = 2
+adventurer_name = "Apprentice Witch"
+stats = {
+"Atk": 5,
+"Def": 5,
+"Luk": 800,
+"Mag": 600,
+"Res": 5,
+"Spd": 5
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_lock_ = true
+
+[node name="QuestScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="QuestMarginContainer" type="MarginContainer" parent="MarginContainer/QuestScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_bottom = 300
+
+[node name="QuestGrid" type="GridContainer" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 40
+columns = 4
+metadata/_edit_lock_ = true
+
+[node name="QuestCard" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard2" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard3" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard4" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard5" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard6" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard7" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard8" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard9" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard10" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="QuestCard11" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+layout_mode = 2
+
+[node name="TempContainer" type="Container" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="UI/MarginContainer/PauseButton" to="." method="_on_pause_button_pressed"]

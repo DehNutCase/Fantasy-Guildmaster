@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://0375ym5ti02r"]
+
+[ext_resource type="Texture2D" uid="uid://decxttll2p1w2" path="res://assets/sprites/ui/sg_menu02.png" id="1_34m6u"]
+[ext_resource type="Texture2D" uid="uid://dvetdmta2nlya" path="res://assets/sprites/ui/edited/sg_menu03_resized.png" id="2_2cqfw"]
+[ext_resource type="PackedScene" uid="uid://bp0a8kvd0hweo" path="res://scenes/main_scene/home_button.tscn" id="2_34m6u"]
+[ext_resource type="Texture2D" uid="uid://yggxrusu4hcp" path="res://assets/sprites/ui/edited/sg_menu04_resized.png" id="4_6loks"]
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("1_34m6u")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 0
+
+[node name="HomeButton" parent="UI/MarginContainer/HBoxContainer" instance=ExtResource("2_34m6u")]
+layout_mode = 2
+texture_pressed = ExtResource("2_2cqfw")
+texture_hover = ExtResource("2_2cqfw")
+location = 1
+
+[node name="HomeButton2" parent="UI/MarginContainer/HBoxContainer" instance=ExtResource("2_34m6u")]
+layout_mode = 2
+
+[node name="HomeButton3" parent="UI/MarginContainer/HBoxContainer" instance=ExtResource("2_34m6u")]
+layout_mode = 2
+
+[node name="HomeButton4" parent="UI/MarginContainer/HBoxContainer" instance=ExtResource("2_34m6u")]
+layout_mode = 2
+
+[node name="HomeButton5" parent="UI/MarginContainer/HBoxContainer" instance=ExtResource("2_34m6u")]
+layout_mode = 2
+
+[node name="HomeButton6" parent="UI/MarginContainer/HBoxContainer" instance=ExtResource("2_34m6u")]
+layout_mode = 2
+
+[node name="HomeButton7" parent="UI/MarginContainer/HBoxContainer" instance=ExtResource("2_34m6u")]
+layout_mode = 2
+texture_pressed = ExtResource("4_6loks")
+texture_hover = ExtResource("4_6loks")
+location = -1

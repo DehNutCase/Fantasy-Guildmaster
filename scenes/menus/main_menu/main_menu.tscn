@@ -17,10 +17,10 @@ credits_packed_scene = ExtResource("4_m0ubd")
 text = "v0.0.1"
 
 [node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
-text = "20 Seconds Daughter"
+text = "Guildmaster Simulator"
 
 [node name="SubTitleLabel" parent="MenuContainer/SubTitleMargin/SubTitleContainer" index="0"]
-text = "The Quickest Daughter Raising Simulator Ever"
+text = "20 Second Edition"
 
 [node name="ContinueGameButton" type="Button" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="1"]
 unique_name_in_owner = true
