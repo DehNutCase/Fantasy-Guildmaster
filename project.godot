@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Guildmaster Simulator"
+config/name="Fantasy Guildmaster"
 config/version="0.0.1"
 run/main_scene="res://scenes/opening/opening.tscn"
-config/custom_user_dir_name="SleepyCatSoftware/GuildmasterSimulator"
+config/custom_user_dir_name="SleepyCatSoftware/FantasyGuildmaster"
 config/features=PackedStringArray("4.5")
 
 [autoload]
