@@ -37,6 +37,9 @@ text = "Level Select"
 [node name="OptionsButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="3"]
 visible = false
 
+[node name="CreditsButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="4"]
+visible = false
+
 [node name="NewGameConfirmation" parent="." index="5" instance=ExtResource("5_627ab")]
 unique_name_in_owner = true
 visible = false

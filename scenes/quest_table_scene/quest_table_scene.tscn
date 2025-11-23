@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvxaff43r1r76"]
+[gd_scene load_steps=7 format=3 uid="uid://dvxaff43r1r76"]
 
 [ext_resource type="Script" uid="uid://0qshyr4uxws6" path="res://scenes/quest_table_scene/quest_table_scene.gd" id="1_m22np"]
 [ext_resource type="Shortcut" uid="uid://40dje1lljl3i" path="res://assets/shortcuts/space_bar_shortcut.tres" id="2_1fjsi"]
 [ext_resource type="PackedScene" uid="uid://dl8v7jvifmu1i" path="res://scenes/quest_card/quest_card.tscn" id="2_j88rj"]
 [ext_resource type="PackedScene" uid="uid://deqxoltweu4dr" path="res://scenes/adventurer_card/adventurer_card.tscn" id="2_t0odh"]
+[ext_resource type="Theme" uid="uid://b5i2lkh3ixeof" path="res://resources/themes/timer_label_theme.tres" id="4_ylvbt"]
+[ext_resource type="Script" uid="uid://ddbwp46tsflca" path="res://scenes/quest_table_scene/timer_label.gd" id="5_86o3k"]
 
 [node name="QuestTableScene" type="Control"]
 layout_mode = 3
@@ -52,7 +54,7 @@ alignment = 1
 
 [node name="AdventurerCard" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
-adventurer_name = "Hero (F)"
+adventurer_id = "hero_f"
 stats = {
 "Atk": 1200,
 "Def": 600,
@@ -64,7 +66,7 @@ stats = {
 
 [node name="AdventurerCard2" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
-adventurer_name = "Hero (M)"
+adventurer_id = "hero_m"
 stats = {
 "Atk": 750,
 "Def": 1100,
@@ -76,7 +78,7 @@ stats = {
 
 [node name="AdventurerCard3" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
-adventurer_name = "Adventurer (M)"
+adventurer_id = "adventurer_m"
 stats = {
 "Atk": 450,
 "Def": 450,
@@ -88,7 +90,7 @@ stats = {
 
 [node name="AdventurerCard4" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
-adventurer_name = "Adventurer (F)"
+adventurer_id = "adventurer_f"
 stats = {
 "Atk": 450,
 "Def": 450,
@@ -100,7 +102,7 @@ stats = {
 
 [node name="AdventurerCard5" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
-adventurer_name = "Apprentice Witch"
+adventurer_id = "apprentice_witch"
 stats = {
 "Atk": 5,
 "Def": 5,
@@ -109,6 +111,14 @@ stats = {
 "Res": 5,
 "Spd": 5
 }
+
+[node name="TimerLabel" type="Label" parent="UI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("4_ylvbt")
+text = "x.0s"
+script = ExtResource("5_86o3k")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -147,36 +157,8 @@ metadata/_edit_lock_ = true
 
 [node name="QuestCard" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
 layout_mode = 2
-
-[node name="QuestCard2" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard3" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard4" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard5" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard6" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard7" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard8" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard9" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard10" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
-
-[node name="QuestCard11" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
-layout_mode = 2
+quest_name = "dragon_hunt"
+is_main_quest = true
 
 [node name="TempContainer" type="Container" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer"]
 unique_name_in_owner = true

@@ -12,8 +12,9 @@ var targets = []
 signal dragging_started
 
 #region
+@export var adventurer_id:String = ""
 @export var adventurer_name:String = ""
-@export var adventurer_icon:Texture2D = load("res://icon.svg")
+@export var adventurer_icon:Texture2D
 @export var stats = {
 	"Atk": 0,
 	"Def": 0,
@@ -22,16 +23,28 @@ signal dragging_started
 	"Spd": 0,
 	"Luk": 0,
 }
+var stat_order = ["Atk", "Def", "Mag", "Res", "Spd", "Luk"]
 #endregion
 
 func _ready() -> void:
-	update_label()
+	load_adventurer()
+
+func load_adventurer() -> void:
+	if adventurer_id in GlobalConstants.adventurers:
+		var adventurer_data = GlobalConstants.adventurers[adventurer_id]
+		adventurer_icon = adventurer_data.icon
+		stats = adventurer_data.stats.duplicate(true)
+		adventurer_name = adventurer_data.name
+		update_label()
+	else:
+		printerr("adventurer_id not found for load_adventurer in adventurer_card")
+	pass
 
 func update_label() -> void:
 	label.clear()
 	var text = "\n[center]" + adventurer_name + "[/center]\n\n"
 	text += "[center][table=2]"
-	for stat in stats:
+	for stat in stat_order:
 		text += "[cell] " + stat + ": " + calculate_rating(stat) + " [/cell]"
 	text += "[/table][/center]"
 	label.append_text(text)
@@ -70,16 +83,16 @@ func _on_area_area_entered(area: Area2D) -> void:
 		if current_state != States.DRAGGING:
 			return
 		for target in targets:
-			target.get_parent().modulate = Color.WHITE
-		area.get_parent().modulate = Color.GOLD
+			target.get_parent().on_adventuerer_card_stop_hover()
+		area.get_parent().on_adventurer_card_hover(self)
 
 func _on_area_area_exited(area: Area2D) -> void:
 	targets.erase(area)
 	if current_state != States.DRAGGING:
 		return
-	area.get_parent().modulate = Color.WHITE
+	area.get_parent().on_adventuerer_card_stop_hover()
 	if targets:
-		targets[-1].get_parent().modulate = Color.GOLD
+		targets[-1].get_parent().on_adventurer_card_hover(self)
 
 func change_state(from:States, to:States) -> void:
 	exit_state(from)
@@ -90,7 +103,7 @@ func enter_state(state:States) -> void:
 	match state:
 		States.DRAGGING:
 			if targets:
-				targets[-1].get_parent().modulate = Color.GOLD
+				targets[-1].get_parent().on_adventurer_card_hover(self)
 			dragging_started.emit(self)
 			scale = Vector2(.5,.5)
 		States.BASE:
@@ -115,4 +128,9 @@ func exit_state(state:States) -> void:
 	match state:
 		States.DRAGGING:
 			for target in targets:
-				target.get_parent().modulate = Color.WHITE
+				target.get_parent().on_adventuerer_card_stop_hover()
+
+func process_rewards(stats_dict) -> void:
+	for stat in stats_dict:
+		stats[stat] += int(stats_dict[stat]/10)
+	update_label()
