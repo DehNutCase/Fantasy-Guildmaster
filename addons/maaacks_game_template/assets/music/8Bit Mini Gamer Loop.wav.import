@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://lwu2ytk3ra6u"
+path="res://.godot/imported/8Bit Mini Gamer Loop.wav-b1c8b38660e7554d8b3df100e9c6c846.sample"
+
+[deps]
+
+source_file="res://addons/maaacks_game_template/assets/music/8Bit Mini Gamer Loop.wav"
+dest_files=["res://.godot/imported/8Bit Mini Gamer Loop.wav-b1c8b38660e7554d8b3df100e9c6c846.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

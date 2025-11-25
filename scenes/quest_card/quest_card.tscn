@@ -1,24 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl8v7jvifmu1i"]
+[gd_scene load_steps=7 format=3 uid="uid://dl8v7jvifmu1i"]
 
 [ext_resource type="Theme" uid="uid://dbyhq001le5s3" path="res://resources/themes/quest_card_theme.tres" id="1_oanye"]
+[ext_resource type="Material" uid="uid://cglhlka6drkik" path="res://resources/shaders/teleport_shader_material.tres" id="1_wcn6o"]
 [ext_resource type="Texture2D" uid="uid://7nhu4lxoftiv" path="res://icon.svg" id="2_83hj1"]
 [ext_resource type="Script" uid="uid://ck2jqbbjayfxc" path="res://scenes/quest_card/quest_card.gd" id="2_jt121"]
+[ext_resource type="Texture2D" uid="uid://bohpnl5s3qmx2" path="res://assets/sprites/ui/window_popup_w01.png" id="4_wcn6o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcn6o"]
 size = Vector2(240, 320)
 
 [node name="QuestCard" type="Button"]
-self_modulate = Color(1, 1, 1, 0.39215687)
+self_modulate = Color(1, 1, 1, 0.392157)
+material = ExtResource("1_wcn6o")
 custom_minimum_size = Vector2(240, 320)
 offset_right = 240.0
 offset_bottom = 320.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme = ExtResource("1_oanye")
+flat = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_jt121")
 metadata/_edit_lock_ = true
+
+[node name="Background" type="TextureRect" parent="."]
+unique_name_in_owner = true
+use_parent_material = true
+custom_minimum_size = Vector2(260, 340)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -160.0
+offset_right = 120.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_wcn6o")
+expand_mode = 1
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -30,6 +53,7 @@ metadata/_edit_lock_ = true
 shape = SubResource("RectangleShape2D_wcn6o")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+use_parent_material = true
 layout_mode = 0
 offset_right = 240.0
 offset_bottom = 320.0
@@ -39,6 +63,7 @@ size_flags_vertical = 3
 
 [node name="QuestIcon" type="TextureRect" parent="VBoxContainer"]
 unique_name_in_owner = true
+use_parent_material = true
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_83hj1")

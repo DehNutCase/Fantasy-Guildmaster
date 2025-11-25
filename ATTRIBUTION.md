@@ -1,5 +1,5 @@
 # Attribution
-### 20 Seconds Daughter
+### Fantasy Guildmaster
 Author: [SleepyCatSoftware](https://sleepycatsoftware.itch.io/)
 
 ## Collaborators

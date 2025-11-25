@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvxaff43r1r76"]
+[gd_scene load_steps=11 format=3 uid="uid://dvxaff43r1r76"]
 
 [ext_resource type="Script" uid="uid://0qshyr4uxws6" path="res://scenes/quest_table_scene/quest_table_scene.gd" id="1_m22np"]
 [ext_resource type="Shortcut" uid="uid://40dje1lljl3i" path="res://assets/shortcuts/space_bar_shortcut.tres" id="2_1fjsi"]
@@ -6,6 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://deqxoltweu4dr" path="res://scenes/adventurer_card/adventurer_card.tscn" id="2_t0odh"]
 [ext_resource type="Theme" uid="uid://b5i2lkh3ixeof" path="res://resources/themes/timer_label_theme.tres" id="4_ylvbt"]
 [ext_resource type="Script" uid="uid://ddbwp46tsflca" path="res://scenes/quest_table_scene/timer_label.gd" id="5_86o3k"]
+[ext_resource type="Script" uid="uid://b8n0xcp5uy36q" path="res://scenes/quest_table_scene/tutorial_text.gd" id="6_rxb7q"]
+[ext_resource type="Theme" uid="uid://dgqqdphxvec5m" path="res://resources/themes/tutorial_label_theme.tres" id="6_yce17"]
+[ext_resource type="Shader" uid="uid://c8aah5e6r5hqa" path="res://resources/shaders/teleport_shader.gdshader" id="9_sv1ko"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5jo3"]
+resource_local_to_scene = true
+shader = ExtResource("9_sv1ko")
+shader_parameter/progress = 0.0
+shader_parameter/noise_desnity = 20.0
+shader_parameter/beam_size = 0.15000000596046
+shader_parameter/color = Color(0, 1.02, 1.2, 1)
 
 [node name="QuestTableScene" type="Control"]
 layout_mode = 3
@@ -18,7 +29,6 @@ script = ExtResource("1_m22np")
 metadata/_edit_lock_ = true
 
 [node name="UI" type="CanvasLayer" parent="."]
-process_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
 anchors_preset = 15
@@ -33,7 +43,36 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_edit_lock_ = true
 
-[node name="PauseButton" type="Button" parent="UI/MarginContainer"]
+[node name="TopUIBar" type="HBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="TimerLabel" type="Label" parent="UI/MarginContainer/TopUIBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("4_ylvbt")
+text = "x.0s"
+script = ExtResource("5_86o3k")
+
+[node name="Padding" type="MarginContainer" parent="UI/MarginContainer/TopUIBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TutorialButton" type="Button" parent="UI/MarginContainer/TopUIBar"]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+shortcut = ExtResource("2_1fjsi")
+text = "?"
+metadata/_edit_lock_ = true
+
+[node name="PauseButton" type="Button" parent="UI/MarginContainer/TopUIBar"]
 unique_name_in_owner = true
 process_mode = 3
 custom_minimum_size = Vector2(40, 40)
@@ -44,15 +83,24 @@ shortcut = ExtResource("2_1fjsi")
 text = "Pause (Spacebar)"
 metadata/_edit_lock_ = true
 
-[node name="AdventurersContainer" type="HBoxContainer" parent="UI/MarginContainer"]
+[node name="AdventurersContainer" type="HBoxContainer" parent="UI"]
 unique_name_in_owner = true
-layout_mode = 2
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -630.0
+offset_top = -240.0
+offset_right = 630.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 8
 mouse_filter = 2
 alignment = 1
 
-[node name="AdventurerCard" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+[node name="AdventurerCard" parent="UI/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
 adventurer_id = "hero_f"
 stats = {
@@ -64,7 +112,7 @@ stats = {
 "Spd": 600
 }
 
-[node name="AdventurerCard2" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+[node name="AdventurerCard2" parent="UI/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
 adventurer_id = "hero_m"
 stats = {
@@ -76,7 +124,7 @@ stats = {
 "Spd": 800
 }
 
-[node name="AdventurerCard3" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+[node name="AdventurerCard3" parent="UI/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
 adventurer_id = "adventurer_m"
 stats = {
@@ -88,7 +136,7 @@ stats = {
 "Spd": 450
 }
 
-[node name="AdventurerCard4" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+[node name="AdventurerCard4" parent="UI/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
 adventurer_id = "adventurer_f"
 stats = {
@@ -100,7 +148,7 @@ stats = {
 "Spd": 450
 }
 
-[node name="AdventurerCard5" parent="UI/MarginContainer/AdventurersContainer" instance=ExtResource("2_t0odh")]
+[node name="AdventurerCard5" parent="UI/AdventurersContainer" instance=ExtResource("2_t0odh")]
 layout_mode = 2
 adventurer_id = "apprentice_witch"
 stats = {
@@ -112,40 +160,58 @@ stats = {
 "Spd": 5
 }
 
-[node name="TimerLabel" type="Label" parent="UI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = ExtResource("4_ylvbt")
-text = "x.0s"
-script = ExtResource("5_86o3k")
+[node name="TutorialContainer" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="UI/TutorialContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/TutorialContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Tutorial Text" type="RichTextLabel" parent="UI/TutorialContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("6_yce17")
+bbcode_enabled = true
+script = ExtResource("6_rxb7q")
+
+[node name="CloseTutorialButton" type="Button" parent="UI/TutorialContainer/PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "X"
+
+[node name="QuestScrollContainer" type="ScrollContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
 metadata/_edit_lock_ = true
 
-[node name="QuestScrollContainer" type="ScrollContainer" parent="MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-metadata/_edit_lock_ = true
-
-[node name="QuestMarginContainer" type="MarginContainer" parent="MarginContainer/QuestScrollContainer"]
+[node name="QuestMarginContainer" type="MarginContainer" parent="QuestScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_bottom = 300
 
-[node name="QuestGrid" type="GridContainer" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer"]
+[node name="QuestGrid" type="GridContainer" parent="QuestScrollContainer/QuestMarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
@@ -155,15 +221,13 @@ theme_override_constants/v_separation = 40
 columns = 4
 metadata/_edit_lock_ = true
 
-[node name="QuestCard" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+[node name="MainQuestCard" parent="QuestScrollContainer/QuestMarginContainer/QuestGrid" instance=ExtResource("2_j88rj")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_k5jo3")
 layout_mode = 2
 quest_name = "dragon_hunt"
 is_main_quest = true
 
-[node name="TempContainer" type="Container" parent="MarginContainer/QuestScrollContainer/QuestMarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[connection signal="pressed" from="UI/MarginContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/TopUIBar/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/TopUIBar/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UI/TutorialContainer/PanelContainer/CloseTutorialButton" to="." method="_on_close_tutorial_button_pressed"]

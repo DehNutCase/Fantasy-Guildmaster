@@ -8,6 +8,7 @@ var targets = []
 @onready var label = %RichTextLabel
 @onready var original_min_size = custom_minimum_size
 @onready var icon = %Icon
+@onready var target_icon = %TargetIcon
 
 signal dragging_started
 
@@ -49,6 +50,7 @@ func update_label() -> void:
 	text += "[/table][/center]"
 	label.append_text(text)
 	icon.texture = adventurer_icon
+	target_icon.texture = adventurer_icon
 
 func calculate_rating(stat_name:String) -> String:
 	var stat_value = stats[stat_name]
@@ -68,13 +70,19 @@ func _input(event):
 	match current_state:
 		States.DRAGGING:
 			if event is InputEventMouseMotion or InputEventJoypadMotion:
-				global_position = get_global_mouse_position() - size/4
+				target_icon.global_position = get_global_mouse_position() - target_icon.size/2
 			if event.is_action("ui_click"):
 				change_state(current_state, States.RELEASED)
 				get_viewport().set_input_as_handled()
 			if event.is_action_pressed("cancel"):
 				change_state(current_state, States.BASE)
 				get_viewport().set_input_as_handled()
+			if event.is_action("ui_mouse_wheel_up"):
+				%QuestScrollContainer.scroll_vertical -= 40
+				target_icon.global_position = get_global_mouse_position() - target_icon.size/2
+			if event.is_action("ui_mouse_wheel_down"):
+				%QuestScrollContainer.scroll_vertical += 40
+				target_icon.global_position = get_global_mouse_position() - target_icon.size/2
 			
 	
 func _on_area_area_entered(area: Area2D) -> void:
@@ -102,10 +110,14 @@ func enter_state(state:States) -> void:
 	current_state = state
 	match state:
 		States.DRAGGING:
+			GlobalData.slow_down_list.append(adventurer_name)
 			if targets:
 				targets[-1].get_parent().on_adventurer_card_hover(self)
 			dragging_started.emit(self)
-			scale = Vector2(.5,.5)
+			self_modulate = Color.GOLD
+			target_icon.global_position = get_global_mouse_position() - target_icon.size/2
+			target_icon.show()
+
 		States.BASE:
 			label.show()
 			scale = Vector2(1,1)
@@ -127,10 +139,17 @@ func enter_state(state:States) -> void:
 func exit_state(state:States) -> void:
 	match state:
 		States.DRAGGING:
+			self_modulate = Color.WHITE
+			target_icon.hide()
+			target_icon.position = Vector2.ZERO
+			GlobalData.slow_down_list.erase(adventurer_name)
 			for target in targets:
 				target.get_parent().on_adventuerer_card_stop_hover()
 
 func process_rewards(stats_dict) -> void:
 	for stat in stats_dict:
-		stats[stat] += int(stats_dict[stat]/10)
+		var multiplier:float = 1.0
+		if stat in GlobalConstants.adventurers[adventurer_id].growth_rate:
+			multiplier = GlobalConstants.adventurers[adventurer_id].growth_rate[stat]
+		stats[stat] += int(stats_dict[stat] * multiplier / 10.0)
 	update_label()

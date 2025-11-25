@@ -18,9 +18,9 @@ const quests = {
 		"target": "Dragon(s)",
 		"quest_stats" : {
 			"Atk": 4000.0,
-			"Def": 4000.0,
+			"Def": 8000.0,
 			"Mag": 4000.0,
-			"Res": 4000.0,
+			"Res": 8000.0,
 			"Spd": 0.0,
 			"Luk": 0.0,
 		},
@@ -169,6 +169,14 @@ const adventurers = {
 			"Spd": 1100,
 			"Luk": 800,
 		},
+		"growth_rate": {
+			"Atk": .5,
+			"Def": .5,
+			"Mag": .5,
+			"Res": .5,
+			"Spd": .5,
+			"Luk": .5,
+		},
 		"icon": preload("res://assets/sprites/adventurer_icons/M_Brave_01.png"),
 	},
 	"hero_f": {
@@ -180,6 +188,14 @@ const adventurers = {
 			"Res": 350,
 			"Spd": 600,
 			"Luk": 600,
+		},
+		"growth_rate": {
+			"Atk": .5,
+			"Def": .5,
+			"Mag": .5,
+			"Res": .5,
+			"Spd": .5,
+			"Luk": .5,
 		},
 		"icon": preload("res://assets/sprites/adventurer_icons/F_Brave_01.png"),
 	},
@@ -193,6 +209,14 @@ const adventurers = {
 			"Spd": 450,
 			"Luk": 450,
 		},
+		"growth_rate": {
+			"Atk": 1.0,
+			"Def": 1.0,
+			"Mag": 1.0,
+			"Res": 1.0,
+			"Spd": 1.0,
+			"Luk": 1.0,
+		},
 		"icon": preload("res://assets/sprites/adventurer_icons/002tf_adventurer_blue_male_A.png"),
 	},
 	"adventurer_f": {
@@ -204,6 +228,14 @@ const adventurers = {
 			"Res": 250,
 			"Spd": 250,
 			"Luk": 650,
+		},
+		"growth_rate": {
+			"Atk": 1.0,
+			"Def": 1.0,
+			"Mag": 1.0,
+			"Res": 1.0,
+			"Spd": 1.0,
+			"Luk": 1.0,
 		},
 		"icon": preload("res://assets/sprites/adventurer_icons/001tf_adventurer_female_A.png"),
 	},
@@ -217,6 +249,53 @@ const adventurers = {
 			"Spd": 50,
 			"Luk": 2000,
 		},
+		"growth_rate": {
+			"Atk": 2,
+			"Def": 2,
+			"Mag": 2,
+			"Res": 2,
+			"Spd": 2,
+			"Luk": 2,
+		},
 		"icon": preload("res://assets/sprites/adventurer_icons/exp_01_000.png"),
+	},
+}
+
+const music = {
+	"default" = preload("res://addons/maaacks_game_template/assets/music/8Bit Mini Gamer Loop.wav"),
+	"boss" = preload("res://addons/maaacks_game_template/assets/music/8Bit Adventure Loop.wav"),
+	"victory" = preload("res://addons/maaacks_game_template/assets/music/Hollywood Star Loop.wav"),
+	"defeat" = preload("res://addons/maaacks_game_template/assets/music/8Bit Tragic Mistake Loop.wav"),
+}
+
+const constants = {
+	"PROGRESS_BAR_MULTIPLIER" = 100, #Multiply quest card progress bar max value and changes by this factor, used to make progress more granular to allow time slowdowns
+	"STAT_ORDER" = ["Atk", "Def", "Mag", "Res", "Spd", "Luk"],
+}
+
+const stats = {
+	"atk": {
+		"label": "Atk",
+		"color": Color.ORANGE
+	},
+	"def": {
+		"label": "Def",
+		"color": Color.LIGHT_SEA_GREEN,
+	},
+	"mag": {
+		"label": "Mag",
+		"color": Color.BLUE,
+	},
+	"res": {
+		"label": "Res",
+		"color": Color.BLUE_VIOLET
+	},
+	"spd": {
+		"label": "Spd",
+		"color": Color.GREEN
+	},
+	"luk": {
+		"label": "Luk",
+		"color": Color.YELLOW
 	},
 }

@@ -9,15 +9,9 @@
 [node name="MainMenu" instance=ExtResource("1_ub2bi")]
 script = ExtResource("2_x31ro")
 level_select_packed_scene = null
-confirm_new_game = true
+confirm_new_game = false
 options_packed_scene = ExtResource("3_0jpat")
 credits_packed_scene = ExtResource("4_m0ubd")
-
-[node name="VersionLabel" parent="VersionMargin/VersionContainer" index="0"]
-text = "v0.0.1"
-
-[node name="TitleLabel" parent="MenuContainer/TitleMargin/TitleContainer" index="0"]
-text = "Guildmaster Simulator"
 
 [node name="SubTitleLabel" parent="MenuContainer/SubTitleMargin/SubTitleContainer" index="0"]
 text = "20 Second Edition"
@@ -33,9 +27,6 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Level Select"
-
-[node name="OptionsButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="3"]
-visible = false
 
 [node name="CreditsButton" parent="MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer" index="4"]
 visible = false
